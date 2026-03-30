@@ -3,6 +3,8 @@
 
 <img width="1393" height="774" alt="image" src="https://github.com/user-attachments/assets/f45a1dad-836a-4d0f-b1eb-4b5b5aa85a38" />
 
+<img width="1390" height="773" alt="image" src="https://github.com/user-attachments/assets/eb10564a-1ac8-45d6-ba66-fdc88a834374" />
+
 <img width="1396" height="784" alt="Screenshot 2026-03-30 223049" src="https://github.com/user-attachments/assets/6178280b-42c4-40fb-98b3-3e1f7e30d717" />
 
 Learn and explore a structured latent space for Magic: The Gathering creature artwork using a denoising autoencoder, embedding directions, and interactive latent manipulation.
