@@ -1,5 +1,7 @@
 # 🧠 MTG Latent Autoencoder
 
+<img width="1396" height="784" alt="Screenshot 2026-03-30 223049" src="https://github.com/user-attachments/assets/6178280b-42c4-40fb-98b3-3e1f7e30d717" />
+
 Learn and explore a structured latent space for Magic: The Gathering creature artwork using a denoising autoencoder, embedding directions, and interactive latent manipulation.
 
 This project focuses on:
@@ -7,17 +9,6 @@ This project focuses on:
 * reconstructing and denoising artwork
 * learning meaningful latent representations
 * enabling controlled semantic edits (e.g. creature type transformations)
-
----
-
-# 📸 Examples
-
-<!-- Add your images here -->
-
-<!--
-![example1](path/to/image1.png)
-![example2](path/to/image2.png)
--->
 
 ---
 
@@ -40,7 +31,7 @@ pip install numpy pillow tqdm
 
 * PyTorch should match your CUDA version
   → https://pytorch.org/get-started/locally/
-* Works on CPU, but **training will be very slow**
+* Works on CPU, but **training will be very slow** (do not do this)
 
 ---
 
@@ -50,17 +41,17 @@ Follow these steps in order:
 
 ---
 
-## 1. Train the autoencoder
+## 1. Get the Images
 
 ```bash
-python scripts/train_autoencoder.py
+python scripts/scryfall_api_test.py
+python scripts/download_scryfall_creature_art.py
+python scripts/browse_dataset_pygame.py
 ```
 
-Trains the base model for reconstruction and denoising.
+Check out the API of scryfall and download the images.
 
----
-
-## 2. Train the patch critic (optional but recommended)
+## 2. Create and Train the patch critic (optional but recommended)
 
 ```bash
 python scripts/create_train_patch_critic.py
@@ -74,10 +65,24 @@ Adds a learned perceptual signal:
 
 ---
 
-## 3. Create latent embeddings
+## 3. Create Models
+
+```bash
+python scripts/create_autoencoder_model.py
+python scripts/train_autoencoder.py
+```
+
+Trains the base model for reconstruction and denoising.
+Several trainings are needed, the right hyperparameters and arguments are important.
+A simple start without data augmentation (denoising opion) or any additinal loss is recommended.
+
+---
+
+## 4. Create latent Embeddings
 
 ```bash
 python scripts/save_embeddings.py
+python scripts/save_embeddings_big.py
 ```
 
 Computes per-creature-type latent directions:
@@ -87,10 +92,11 @@ delta = mean(type) - global_mean
 ```
 
 These are later used for semantic manipulation.
+Choose only one option, the big option is trying to get more shape based information, instead of mostly color.
 
 ---
 
-## 4. Explore latent space interactively
+## 5. Explore latent space interactively
 
 ```bash
 python latent_manipulator.py
@@ -120,9 +126,5 @@ Features:
 * Improved face/detail reconstruction
 * Diffusion-style refinement
 
----
-
-# 📄 License
-
-MIT (or your preferred license)
+Still some work to do and many types of creatures aren't very common.
 
