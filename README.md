@@ -95,7 +95,7 @@ Computes per-creature-type latent directions:
 $$delta = mean(type) - mean(global)$$
 
 These are later used for semantic manipulation.
-Choose only one option, the big option is trying to get more shape based information, instead of mostly color.
+**Choose only one option**, the big option is trying to get more shape based information, instead of mostly color.
 
 ---
 
